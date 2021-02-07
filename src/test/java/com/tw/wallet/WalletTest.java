@@ -3,6 +3,7 @@ package com.tw.wallet;
 import org.junit.jupiter.api.Test;
 
 import static com.tw.wallet.Currency.RUPEE;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WalletTest {
@@ -19,5 +20,19 @@ public class WalletTest {
 
         assertTrue(status);
     }
+
+    @Test
+    void shouldReturnFalseIfSpecifiedAmountCannotBeWithdrawnFromTheWallet() {
+        Money money = new Money(40, RUPEE);
+        Wallet wallet = new Wallet();
+        wallet.deposit(money);
+        Money newMoney = new Money(50, RUPEE);
+
+
+        boolean status = wallet.withdraw(newMoney);
+
+        assertFalse(status);
+    }
+
 
 }
