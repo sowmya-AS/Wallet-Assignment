@@ -1,38 +1,34 @@
 package com.tw.wallet;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static com.tw.wallet.Currency.RUPEE;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class WalletTest {
+
     @Test
     void shouldReturnTrueIfSpecifiedAmountHasBeenWithdrawnFromTheWallet() {
-
         Money money = new Money(100, RUPEE);
         Wallet wallet = new Wallet();
-        wallet.deposit(money);
+        wallet.put(money);
         Money newMoney = new Money(50, RUPEE);
 
+        Executable executable = () -> wallet.take(newMoney);
 
-        boolean status = wallet.withdraw(newMoney);
-
-        assertTrue(status);
+        assertDoesNotThrow(executable);
     }
 
     @Test
-    void shouldReturnFalseIfSpecifiedAmountCannotBeWithdrawnFromTheWallet() {
+    void shouldThrowMoneyInsufficientBalanceInWalletExceptionIfSpecifiedAmountCannotBeWithdrawnFromTheWallet() {
         Money money = new Money(40, RUPEE);
         Wallet wallet = new Wallet();
-        wallet.deposit(money);
+        wallet.put(money);
         Money newMoney = new Money(50, RUPEE);
 
+        Executable executable = () -> wallet.take(newMoney);
 
-        boolean status = wallet.withdraw(newMoney);
-
-        assertFalse(status);
+        assertThrows(InsufficientBalanceInWalletException.class, executable);
     }
-
-
 }
