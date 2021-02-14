@@ -17,6 +17,6 @@ public class Wallet {
     }
 
     public double totalBalanceInPreferredCurrency(Currency currencyType) {
-        return totalMoney(balanceAmount,currencyType);
+        return totalMoney(balanceAmount, currencyType);
     }
 }

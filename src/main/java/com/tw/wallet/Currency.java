@@ -15,7 +15,7 @@ public enum Currency {
         return amount * currencyType.conversionFactor;
     }
 
-    public static double convertToPreferredCurrency(double amount, Currency currencyType){
-        return amount/ currencyType.conversionFactor;
+    public static double convertToPreferredCurrency(double amount, Currency currencyType) {
+        return amount / currencyType.conversionFactor;
     }
 }

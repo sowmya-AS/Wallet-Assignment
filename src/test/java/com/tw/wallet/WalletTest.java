@@ -45,4 +45,17 @@ public class WalletTest {
 
         assertEquals(124.85, totalAmountInINR);
     }
+
+    @Test
+    void shouldReturnBalanceAmountInUSDWhenMultipleDepositsAreMade() {
+        Money rupeeMoney = new Money(74.85, RUPEE);
+        Money dollarMoney = new Money(1, DOLLAR);
+        Money anotherRupeeMoney = new Money(149.7, RUPEE);
+        Wallet wallet = new Wallet();
+        wallet.put(rupeeMoney);
+        wallet.put(dollarMoney);
+        wallet.put(anotherRupeeMoney);
+        double totalAmountInUSD = wallet.totalBalanceInPreferredCurrency(DOLLAR);
+        assertEquals(4.0, totalAmountInUSD, 0.1);
+    }
 }

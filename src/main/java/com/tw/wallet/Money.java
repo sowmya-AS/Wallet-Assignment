@@ -33,11 +33,10 @@ public class Money {
     }
 
     public static double totalMoney(double balanceMoney, Currency currency) {
-        return convertToPreferredCurrency(balanceMoney,currency);
+        return convertToPreferredCurrency(balanceMoney, currency);
     }
 
-
-    @Override
+   @Override
     public boolean equals(Object other) {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
