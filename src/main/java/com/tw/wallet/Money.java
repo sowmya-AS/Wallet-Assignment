@@ -3,6 +3,7 @@ package com.tw.wallet;
 import java.util.Objects;
 
 import static com.tw.wallet.Currency.convertToBaseCurrency;
+import static com.tw.wallet.Currency.convertToPreferredCurrency;
 
 public class Money {
     final double value;
@@ -30,6 +31,11 @@ public class Money {
         amount += getValueOfMoneyInBaseCurrency(value, currencyType);
         return amount;
     }
+
+    public static double totalMoney(double balanceMoney, Currency currency) {
+        return convertToPreferredCurrency(balanceMoney,currency);
+    }
+
 
     @Override
     public boolean equals(Object other) {
